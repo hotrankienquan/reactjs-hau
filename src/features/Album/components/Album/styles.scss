@@ -1,0 +1,9 @@
+.album__content {
+  & > img {
+    max-width: 190px;
+    border-radius: 15px;
+  }
+}
+.album__name {
+  font-weight: bold;
+}
