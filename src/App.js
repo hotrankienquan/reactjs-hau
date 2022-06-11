@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import categoryApi from './api/categoryApi';
 import Counter from './features/Counter';
 import styled from 'styled-components';
-import { Link, NavLink, Route, Switch } from 'react-router-dom';
+import { Link, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import Header from 'components/Header';
 const Title = styled.h1`
   text-align: center;
@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <Header />
       <p>
-        <NavLink to={'/todo'} activeClassName="active-menu">
+        <NavLink to={'/todos'} activeClassName="active-menu">
           Todo
         </NavLink>
       </p>
@@ -39,8 +39,9 @@ function App() {
         <NavLink to="/album">Album</NavLink>
       </p>
       <Switch>
+        <Redirect from="/home" to="/" />
         <Route exact path="/" component={TodoFeature} />
-        <Route path="/todo" component={TodoFeature} />
+        <Route path="/todos" component={TodoFeature} />
         <Route path="/album" component={AlbumContainer} />
       </Switch>
       {/* <Header /> */}
