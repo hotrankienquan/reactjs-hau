@@ -1,7 +1,8 @@
 import TodoForm from 'features/Todo/components/TodoForm';
 import TodoList from 'features/Todo/components/TodoList';
-import { useState } from 'react';
-
+import { useEffect, useMemo, useState } from 'react';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import queryString from 'query-string';
 ListPage.propTypes = {};
 // alt + shifft + O : optimize import
 function ListPage(props) {
@@ -22,11 +23,28 @@ function ListPage(props) {
       status: 'new',
     },
   ];
-  const [todoList, setTodoList] = useState(initTodoList);
-  const [filtered, setFiltered] = useState('all');
+  const location = useLocation();
+  const history = useHistory();
+  const match = useRouteMatch();
 
-  const renderedTodo = todoList.filter((todo) => filtered === 'all' || filtered === todo.status);
-  console.log('check filtered', filtered, renderedTodo);
+  const [todoList, setTodoList] = useState(initTodoList);
+  const [filtered, setFiltered] = useState(() => {
+    const params = queryString.parse(location.search);
+    // console.log('params', params);
+    return params.status || 'all';
+  });
+  useEffect(() => {
+    const params = queryString.parse(location.search);
+    console.log('print location search', location.search);
+    console.log('params queery parse', params);
+    setFiltered(params.status || 'all');
+  }, [location.search]);
+
+  const renderedTodo = useMemo(() => {
+    // useMemo, khi nào todoList và filtered thay đổi thì mới filter lại
+    return todoList.filter((todo) => filtered === 'all' || filtered === todo.status);
+  }, [todoList, filtered]);
+  // console.log('check filtered', filtered, renderedTodo);
   const handleTodoClick = (todo, index) => {
     // clone current array to the new one
     const newTodoList = [...todoList];
@@ -41,13 +59,28 @@ function ListPage(props) {
     setTodoList(newTodoList);
   };
   const handleShowAllTodo = () => {
-    setFiltered('all');
+    // setFiltered('all');
+    const queryParams = { status: 'all' };
+    history.push({
+      pathname: match.path,
+      search: queryString.stringify(queryParams),
+    });
   };
   const handleShowCompletedTodo = () => {
-    setFiltered('completed');
+    // setFiltered('completed');
+    const queryParams = { status: 'completed' };
+    history.push({
+      pathname: match.path,
+      search: queryString.stringify(queryParams),
+    });
   };
   const handleShowNewTodo = () => {
-    setFiltered('new');
+    // setFiltered('new');
+    const queryParams = { status: 'new' };
+    history.push({
+      pathname: match.path,
+      search: queryString.stringify(queryParams),
+    });
   };
   const handleTodoFormSubmit = (values) => {
     console.log('form submit', values);

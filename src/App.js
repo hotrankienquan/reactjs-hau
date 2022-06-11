@@ -8,6 +8,7 @@ import Counter from './features/Counter';
 import styled from 'styled-components';
 import { Link, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import Header from 'components/Header';
+import NotFound from 'components/NotFound';
 const Title = styled.h1`
   text-align: center;
   font-weight: bold;
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/" component={TodoFeature} />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/album" component={AlbumContainer} />
+        <Route component={NotFound} />
       </Switch>
       {/* <Header /> */}
       {/* <TodoFeature /> */}
