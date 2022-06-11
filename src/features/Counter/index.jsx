@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { increase } from './counterSlice';
+import { decreaseTwo, increase } from './counterSlice';
 
 Counter.propTypes = {};
 
@@ -14,12 +14,16 @@ function Counter(props) {
     console.log(hanhdong);
     dispatch(hanhdong);
   };
+  const handleDeTwo = () => {
+    dispatch(decreaseTwo());
+  };
   return (
     <div>
       COunter feature
       <p> {count}</p>
       <div>
         <button onClick={handleIncrease}>increase</button>
+        <button onClick={handleDeTwo}>Decrease two</button>
       </div>
     </div>
   );
