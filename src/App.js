@@ -4,6 +4,7 @@ import TodoFeature from './features/Todo';
 import AlbumContainer from './features/Album';
 import { useEffect } from 'react';
 import categoryApi from './api/categoryApi';
+import Counter from './features/Counter';
 
 function App() {
   const name = 'hau';
@@ -45,9 +46,10 @@ function App() {
             <li style={{ backgroundColor: color }}>{color}</li>
           ))}
         </ul> */}
-        <TodoFeature />
+        {/* <TodoFeature /> */}
 
         {/* <AlbumContainer /> */}
+        <Counter />
       </header>
     </div>
   );
