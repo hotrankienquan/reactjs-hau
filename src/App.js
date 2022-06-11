@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import categoryApi from './api/categoryApi';
 import Counter from './features/Counter';
 import styled from 'styled-components';
-import { Link, NavLink, Route } from 'react-router-dom';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import Header from 'components/Header';
 const Title = styled.h1`
   text-align: center;
@@ -31,23 +31,18 @@ function App() {
     <div className="App">
       <Header />
       <p>
-        <Link to={'/todo'}>Todo</Link>
-      </p>
-      <p>
-        <Link to={'/album'}>Album</Link>
-      </p>
-      <p>
         <NavLink to={'/todo'} activeClassName="active-menu">
           Todo
         </NavLink>
       </p>
       <p>
-        <NavLink to={'/album'}>Album</NavLink>
+        <NavLink to="/album">Album</NavLink>
       </p>
-      <Route path="/todo">
-        <TodoFeature />
-      </Route>
-      <Route path="/album" component={AlbumContainer} />
+      <Switch>
+        <Route exact path="/" component={TodoFeature} />
+        <Route path="/todo" component={TodoFeature} />
+        <Route path="/album" component={AlbumContainer} />
+      </Switch>
       {/* <Header /> */}
       {/* <TodoFeature /> */}
       {/* <AlbumContainer /> */}
