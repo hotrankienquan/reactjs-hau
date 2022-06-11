@@ -5,7 +5,14 @@ import AlbumContainer from './features/Album';
 import { useEffect } from 'react';
 import categoryApi from './api/categoryApi';
 import Counter from './features/Counter';
-
+import styled from 'styled-components';
+import { Link, NavLink, Route } from 'react-router-dom';
+import Header from 'components/Header';
+const Title = styled.h1`
+  text-align: center;
+  font-weight: bold;
+  color: ${(props) => props.color || 'green'};
+`;
 function App() {
   const name = 'hau';
   const age = 18;
@@ -22,35 +29,30 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <h1>Giấc mơ có thật</h1> */}
-        {/* <iframe
-          width="900"
-          height="700"
-          src="https://www.youtube.com/embed/MERX5z6RrSs?list=RDMERX5z6RrSs"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe> */}
-        {/* <p>Hậu nguyễn</p>
-        <p>
-          XIn chào {name} - {age} - {isFemale ? "Female" : "Male"}
-        </p>
-        {isFemale ? <p>Female</p> : <p>Male</p>}
-        {isFemale && <p>Female</p>}
-
-        <p>{student.name}</p>
-        <ul>
-          {colorList.map((color) => (
-            <li style={{ backgroundColor: color }}>{color}</li>
-          ))}
-        </ul> */}
-        {/* <TodoFeature /> */}
-
-        {/* <AlbumContainer /> */}
-        <Counter />
-      </header>
+      <Header />
+      <p>
+        <Link to={'/todo'}>Todo</Link>
+      </p>
+      <p>
+        <Link to={'/album'}>Album</Link>
+      </p>
+      <p>
+        <NavLink to={'/todo'} activeClassName="active-menu">
+          Todo
+        </NavLink>
+      </p>
+      <p>
+        <NavLink to={'/album'}>Album</NavLink>
+      </p>
+      <Route path="/todo">
+        <TodoFeature />
+      </Route>
+      <Route path="/album" component={AlbumContainer} />
+      {/* <Header /> */}
+      {/* <TodoFeature /> */}
+      {/* <AlbumContainer /> */}
+      {/* <Counter /> */}
+      Footer
     </div>
   );
 }
