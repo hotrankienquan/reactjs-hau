@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import TodoFeature from './features/Todo';
 import AlbumContainer from './features/Album';
@@ -25,23 +26,23 @@ function App() {
   useEffect(() => {
     // const fetchCategories = () => {};
     categoryApi.getAll().then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   }, []);
   return (
     <div className="App">
       <Header />
-      <p>
+      {/* <p>
         <NavLink to={'/todos'} activeClassName="active-menu">
           Todo
         </NavLink>
       </p>
       <p>
         <NavLink to="/album">Album</NavLink>
-      </p>
+      </p> */}
       <Switch>
-        <Redirect from="/home" to="/" />
-        <Route exact path="/" component={TodoFeature} />
+        {/* <Redirect from="/home" to="/" /> */}
+        <Route exact path="/" component={Counter} />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/album" component={AlbumContainer} />
         <Route component={NotFound} />

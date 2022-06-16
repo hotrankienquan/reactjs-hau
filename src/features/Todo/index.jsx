@@ -1,3 +1,5 @@
+import React from 'react';
+
 import NotFound from 'components/NotFound';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import DetailPage from './pages/DetailPage';

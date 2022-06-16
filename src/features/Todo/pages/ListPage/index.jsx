@@ -1,8 +1,11 @@
+import React from 'react';
+
+import { Button } from '@material-ui/core';
 import TodoForm from 'features/Todo/components/TodoForm';
 import TodoList from 'features/Todo/components/TodoList';
+import queryString from 'query-string';
 import { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
-import queryString from 'query-string';
 ListPage.propTypes = {};
 // alt + shifft + O : optimize import
 function ListPage(props) {
@@ -98,9 +101,15 @@ function ListPage(props) {
       <TodoForm onSubmit={handleTodoFormSubmit} />
       <h3>Todo List</h3>
       <TodoList todoList={renderedTodo} onTodoClick={handleTodoClick} />
-      <button onClick={handleShowAllTodo}>Show All</button>
-      <button onClick={handleShowCompletedTodo}>Show Completed Task</button>
-      <button onClick={handleShowNewTodo}>Show New Task</button>
+      <Button variant="outlined" onClick={handleShowAllTodo}>
+        Show All
+      </Button>
+      <Button variant="outlined" onClick={handleShowCompletedTodo}>
+        Show Completed Task
+      </Button>
+      <Button variant="outlined" onClick={handleShowNewTodo}>
+        Show New Task
+      </Button>
     </div>
   );
 }

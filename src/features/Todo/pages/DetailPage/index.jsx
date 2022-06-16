@@ -1,3 +1,5 @@
+import React from 'react';
+
 DetailPage.propTypes = {};
 
 function DetailPage(props) {
